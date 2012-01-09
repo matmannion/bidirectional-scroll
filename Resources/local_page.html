@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<title>A large image here</title>
+		<meta name="viewport" content="width=device-width">
+		<meta name="format-detection" content="telephone=no"/>
+		
+		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+		
+		<style type="text/css">
+			html, body { margin: 0; padding: 0; }
+		</style>
+	</head>
+	<body>
+		<img id="huge-image" src="" alt="huge">
+		
+		<script type="text/javascript">
+			/* 
+			 * We can't refer to local resources that easily, so we need to use an event listener to pass
+			 * the path of the image in.
+			 */
+			Ti.App.addEventListener('loadImage', function(e) {
+				Ti.API.info($('#huge-image').attr('src'));
+				Ti.API.info('RECEIVED PATH ' + e.path);
+				$('#huge-image').attr('src', e.path);
+				Ti.API.info($('#huge-image').attr('src'));
+			});
+		</script>
+	</body>
+</html>
